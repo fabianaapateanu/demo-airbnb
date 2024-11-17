@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "cypress open --config-file cypress.config.ts --e2e",
-    "cy:run": "cypress run --config-file cypress.config.ts --e2e",
+    "cy:chrome": "cypress run --browser chrome --config-file cypress.config.ts --e2e",
+    "cy:ff": "cypress run --browser firefox --config-file cypress.config.ts --e2e",
     "lint": "tsc --noEmit --pretty && eslint 'cypress/**/*.ts'",
     "lintFix": "eslint 'cypress/**/*.ts' --fix",
     "format": "prettier --write '**/*.{ts,tsx,js,jsx,json,html}'"

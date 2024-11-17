@@ -30,9 +30,9 @@ describe('Search and verify results', () => {
     home.fullSearch.openGuests();
     home.fullSearch.enterGuests(guestsValues);
     home.fullSearch.clickSearch();
-
     home.verifyPropertyResultsLoaded(expectedMinResults);
     cy.then(() => {
+      // will fail when at least one property result does not have no of beds on 3rd line info (subtitle elem)
       home.verifyPropertySearchResults(guestsValues.adults + guestsValues.children);
     });
   });

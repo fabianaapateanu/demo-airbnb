@@ -1,6 +1,7 @@
 import { generateBedRegex } from 'cypress/util/regexUtil';
 
 class ResultItemComponent {
+  private divInfoSel = 'div[aria-labelledby*="title_"]';
   private itemIdx: number;
 
   private get itemContainer() {
@@ -8,7 +9,7 @@ class ResultItemComponent {
   }
 
   private get infoContainer() {
-    return this.itemContainer.find('[aria-labelledby*="title_"] > div > div').eq(1);
+    return this.itemContainer.find(`${this.divInfoSel} > div > div`).eq(1);
   }
 
   private get imageTileLink() {
@@ -16,11 +17,31 @@ class ResultItemComponent {
   }
 
   private get imageTileContainer() {
-    return this.itemContainer.find('[aria-labelledby*="title_"] > div > div').eq(0);
+    return this.itemContainer.find(`${this.divInfoSel} > div > div`).eq(0);
   }
 
-  private get nameElem() {
+  get nameElem() {
     return this.infoContainer.find('> div').eq(0);
+  }
+
+  get subtitleElem1() {
+    return this.infoContainer.find('> div').eq(1);
+  }
+
+  get subtitleElem2() {
+    return this.infoContainer.find('> div').eq(2);
+  }
+
+  get priceElem() {
+    return this.infoContainer.find('> div').eq(3);
+  }
+
+  get ratingElem() {
+    return this.infoContainer.find('> div').eq(4);
+  }
+
+  get priceElemNight() {
+    return this.infoContainer.find('> div').eq(3).find('div[aria-hidden="true"] > span').eq(1);
   }
 
   private get bedsElem() {
@@ -45,6 +66,18 @@ class ResultItemComponent {
   clickOnImageTile = () => {
     this.imageTileLink.invoke('removeAttr', 'target').click({ force: true });
     cy.waitForLoading();
+  };
+
+  hoverOnTile = () => {
+    this.imageTileContainer.hoverElem();
+  };
+
+  getItemPricePerNight = (): Cypress.Chainable<string> => {
+    return this.priceElemNight.invoke('text').then((value: string) => value.trim().match(/\d+/)[0]);
+  };
+
+  getAttributeAriaLabeledBy = (): Cypress.Chainable<string> => {
+    return this.itemContainer.find(this.divInfoSel).invoke('attr', 'aria-labelledby');
   };
 }
 

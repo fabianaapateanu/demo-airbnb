@@ -1,7 +1,7 @@
 import ResultItemComponent from './ResultItemComponent';
 
 class ResultsListComponent {
-  list: Array<ResultItemComponent> = [];
+  list: Array<ResultItemComponent>;
 
   constructor() {
     this.list = [];

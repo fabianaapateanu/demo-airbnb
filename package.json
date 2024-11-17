@@ -1,0 +1,43 @@
+{
+  "name": "demo-airbnb",
+  "version": "1.0.0",
+  "description": "Cypress Airbnb Demo",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open --config-file cypress.config.ts --e2e",
+    "cy:run": "cypress run --config-file cypress.config.ts --e2e",
+    "lint": "tsc --noEmit --pretty && eslint 'cypress/**/*.ts'",
+    "lintFix": "eslint 'cypress/**/*.ts' --fix",
+    "format": "prettier --write '**/*.{ts,tsx,js,jsx,json,html}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabianaapateanu/demo-airbnb"
+  },
+  "keywords": [
+    "Cypress"
+  ],
+  "author": "Fabiana Apateanu",
+  "homepage": "https://github.com/fabianaapateanu",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "cy-verify-downloads": "^0.2.3",
+    "cypress": "^13.15.2",
+    "cypress-localstorage-commands": "^2.2.5",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-multi-reporters": "^1.6.4",
+    "cypress-network-idle": "^1.14.2",
+    "cypress-real-events": "^1.12.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-chai-friendly": "^0.7.4",
+    "eslint-plugin-cypress": "^2.15.2",
+    "fs-extra": "^11.2.0",
+    "mocha-junit-reporter": "^2.2.1",
+    "playwright-webkit": "^1.27.1",
+    "prettier": "^3.0.0",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "random-string-alphanumeric-generator": "^0.12.2",
+    "typescript": "^5.3.3"
+  }
+}

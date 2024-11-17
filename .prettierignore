@@ -1,0 +1,12 @@
+# Ignore artefacts
+/node_modules
+
+#cypress specific
+cypress/reports
+cypress/snapshots
+cypress/downloads
+cypress/.DS_Store
+.DS_Store
+
+#editor
+.idea

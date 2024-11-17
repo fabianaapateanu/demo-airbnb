@@ -45,7 +45,7 @@ class FullSearchComponent {
     this.whereInputElem.hoverElem();
     this.whereInputElem.type(location);
     this.searchSuggestions.should('be.visible').within(() => {
-      cy.contains('Rome, Italy').click({ force: true });
+      cy.contains(location).click({ force: true });
     });
   };
 

@@ -58,14 +58,13 @@ class FullSearchComponent {
     const checkInFormatted = getDateObj(checkInDate);
     const checkOutFormatted = getDateObj(checkOutDate);
     const currentMonthTableIdx = 1;
-    let monthTableIdx = 1;
-    //this means we reach the next month by adding 7 days
+    let nextMonthTableIdx = 1;
     if (checkOutFormatted.month > checkInFormatted.month) {
-      console.log('Decided on next month');
-      monthTableIdx = 2;
+      console.log('Checkout date is next month');
+      nextMonthTableIdx = 2;
     }
     this.selectCalendarDay(currentMonthTableIdx, checkInFormatted.day);
-    this.selectCalendarDay(monthTableIdx, checkOutFormatted.day);
+    this.selectCalendarDay(nextMonthTableIdx, checkOutFormatted.day);
   };
 
   enterGuests = (guests: any) => {
@@ -128,6 +127,35 @@ class FullSearchComponent {
   verifyVisible = () => {
     cy.get('[data-searchbar-open="true"]').should('be.visible');
     this.containterElem.should('be.visible');
+  };
+
+  // TODO
+  private getDiffInMonths = (targetDate: Date): Cypress.Chainable<number> => {
+    return cy
+      .get('[data-visible="true"] section > h2')
+      .invoke('text')
+      .then((currMonth) => {
+        const currentMonthYear = new Date(currMonth);
+        const diffInMonths =
+          (targetDate.getFullYear() - currentMonthYear.getFullYear()) * 12 +
+          (targetDate.getMonth() - currentMonthYear.getMonth());
+        return diffInMonths;
+      });
+  };
+
+  // TODO
+  private selectCalendarMonth = (targetDate: Date) => {
+    cy.get('[data-visible="true"] section > h2')
+      .invoke('text')
+      .then((currMonth) => {
+        const currentMonthYear = new Date(currMonth);
+        const diffInMonths =
+          (targetDate.getFullYear() - currentMonthYear.getFullYear()) * 12 +
+          (targetDate.getMonth() - currentMonthYear.getMonth());
+        for (let i = 0 && diffInMonths > 1; i < diffInMonths; i++) {
+          cy.get('button[aria-label="Move forward to switch to the next month."]').click();
+        }
+      });
   };
 }
 

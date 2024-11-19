@@ -6,11 +6,11 @@ class PropertyPage {
   }
 
   private get containerElem() {
-    return cy.get('[data-pageslot="true"]');
+    return cy.get('section').contains('What this place offers');
   }
 
   private get amenitiesSection() {
-    return this.containerElem.eq(13);
+    return this.containerElem.parent('div').parent().parent('section');
   }
 
   private get amenitiesMoreBtn() {

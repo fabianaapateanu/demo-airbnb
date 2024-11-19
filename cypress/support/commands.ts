@@ -51,7 +51,7 @@ Cypress.Commands.add('clickOutside', { prevSubject: 'element' }, () => {
 Cypress.Commands.add('hoverElem', { prevSubject: 'element' }, (subject) => {
   cy.wrap(subject).scrollIntoView();
   cy.wrap(subject).trigger('mouseenter', { timeout: 500 });
-  cy.wrap(subject).trigger('mouseenter', { timeout: 500 });
+  cy.wrap(subject).trigger('mouseover', { timeout: 500 });
   return cy.wrap(subject);
 });
 

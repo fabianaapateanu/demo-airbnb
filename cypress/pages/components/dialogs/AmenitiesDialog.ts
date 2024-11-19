@@ -8,7 +8,8 @@ class AmenitiesDialog {
   }
 
   verifyItemInList = (itemName: string) => {
-    this.listItems.contains(itemName).should('exist').scrollIntoView().should('be.visible');
+    const regex = new RegExp(itemName, 'i');
+    this.listItems.contains(regex).should('exist').scrollIntoView().should('be.visible');
   };
 }
 
